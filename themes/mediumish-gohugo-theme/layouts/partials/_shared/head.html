@@ -1,0 +1,30 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{{ hugo.Generator }}
+	<link rel="icon" href="{{ .Site.BaseURL }}{{ .Site.Params.favicon }}">
+	<title>{{ .Page.Title }} | {{ .Site.Title }}</title>
+	{{ with .Site.Params.meta.description }}<meta name="description" content="{{ . }}">{{ end }}
+	{{ with .Site.Params.meta.keywords }}<meta name="keywords" content="{{ . }}">{{ end }}
+
+	{{ template "_internal/twitter_cards.html" . }}
+	{{ template "_internal/opengraph.html" . }}
+
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100;200;300;400;500;600;700;900&family=Jost&family=Roboto+Mono:wght@100&family=Roboto:wght@300&family=Urbanist:wght@300;600&display=swap" rel="stylesheet">
+
+	{{ $medium := resources.Get "/css/medium.css" | resources.Fingerprint }}
+	<link rel="stylesheet" href="{{ $medium.RelPermalink | absURL }}">
+
+	{{ $additional := resources.Get "/css/additional.css" | resources.Fingerprint }}
+	<link rel="stylesheet" href="{{ $additional.RelPermalink | absURL }}">
+
+	<!-- Custom css -->
+	{{ range .Site.Params.customCSS -}}
+	{{ $style := resources.Get . }}
+	<link rel="stylesheet" href="{{ $style.RelPermalink }}" media="screen">
+	{{- end }}
+</head>
